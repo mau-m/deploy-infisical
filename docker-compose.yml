@@ -55,6 +55,7 @@ services:
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
       ALLOW_INTERNAL_IP: false
       TELEMETRY_ENABLED: false
+      NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
     ports:
       - "8080:8080"
     # read_only: true  # Temporarily disabled for debugging
@@ -68,6 +69,8 @@ services:
     cpus: 0.5
     networks:
       - infisical_net
+    volumes:
+      - ./cert/:/usr/local/share/ca-certificates/
 
 volumes:
   postgres_infisical:
